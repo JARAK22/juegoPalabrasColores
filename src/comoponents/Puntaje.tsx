@@ -16,9 +16,15 @@ export default function Puntaje({ puntos, correctas, incorrectas, dificultad }: 
             puntajes: puntos,
             nombre: nombre
         }
-        setPuntajeTop([...puntajeTop, puntajeGuardado])
-        localStorage.setItem('puntajeTop', JSON.stringify(puntajeTop))
-        console.log(puntajeTop)
+        // Recupera los puntajes previos de localStorage
+        const puntajesPrevios = JSON.parse(localStorage.getItem('puntajeTop') || '[]')
+        // Agrega el nuevo puntaje
+        const nuevosPuntajes = [...puntajesPrevios, puntajeGuardado]
+        // Guarda el nuevo arreglo en localStorage
+        localStorage.setItem('puntajeTop', JSON.stringify(nuevosPuntajes))
+        // Actualiza el estado local (opcional)
+        setPuntajeTop(nuevosPuntajes)
+        // Navega al top de puntajes
         navigate('/top-puntaje')
     }
 
