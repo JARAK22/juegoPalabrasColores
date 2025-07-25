@@ -15,7 +15,7 @@ export default function Play() {
         duration: 30,
         wordTime: 3
     };
-
+    console.log(settings)
     // creamos dos arrays para las palabras y los colores
     const palabrasColores = ['rojo', 'azul', 'verde', 'amarillo', 'morado', 'naranja', 'negro']
     const colores = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'black']
@@ -63,7 +63,7 @@ export default function Play() {
         if (indicePalabra !== indiceColor) {
             setCorrectas(correctas + 1)
             setPuntos(puntos + 10)
-        }else{
+        } else {
             setPuntos(puntos - 10)
             setIncorrectas(incorrectas + 1)
         }
@@ -74,16 +74,16 @@ export default function Play() {
     useEffect(() => {
         const timer = setInterval(() => {
             setTiempoPalabra(prev => {
-                if(prev <= 0){
+                if (prev <= 1) {
                     generarPalabra();
-                    return 0;
-                }else{
+                    return settings.wordTime; // Reinicia al valor de ajustes
+                } else {
                     return prev - 1;
                 }
             });
         }, 1000);
         return () => clearInterval(timer);
-    }, [tiempoPalabra]);
+    }, [settings.wordTime]); // Solo depende del ajuste, no del tiempo
 
     // para que el juego termine cuando el tiempo restante sea 0
     useEffect(() => {
@@ -98,6 +98,8 @@ export default function Play() {
                     setFinJuego(true);
                     return 0;
                 } else {
+                    setPuntos(puntos - 10)
+                    setIncorrectas(incorrectas + 1)
                     return prev - 1;
                 }
             });

@@ -11,8 +11,8 @@ export default function Ayuda() {
         <div className='bg-sky-700 w-full h-150 flex items-center justify-center rounded-xl'>
             <div className='bg-white w-100 h-100 flex flex-col items-center justify-center rounded-xl'>
                 <div>
-                    <button className='bg-sky-700 text-white px-4 py-2 rounded-xl' onClick={handleBack}>
-                        <FaArrowLeft />
+                    <button onClick={handleBack}>
+                        <FaArrowLeft className='text-sky-700 text-4xl' />
                     </button>
                 </div>
                 <h1 className='text-2xl font-bold text-center text-gray-800 mb-6'>Ayuda</h1>

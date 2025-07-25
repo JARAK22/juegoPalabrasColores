@@ -30,7 +30,7 @@ const Ajustes = () => {
             <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">
                 <div>
                     <button onClick={handleBack}>
-                        <FaArrowLeft className='text-sky-700' text-5xl/>
+                        <FaArrowLeft className='text-sky-700 text-4xl'/>
                     </button>
                 </div>
                 {/* titulo */}
