@@ -15,7 +15,7 @@ export default function Play() {
         duration: 30,
         wordTime: 3
     };
-    console.log(settings)
+    
     // creamos dos arrays para las palabras y los colores
     const palabrasColores = ['rojo', 'azul', 'verde', 'amarillo', 'morado', 'naranja', 'negro']
     const colores = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'black']
@@ -75,13 +75,17 @@ export default function Play() {
         const timer = setInterval(() => {
             setTiempoPalabra(prev => {
                 if (prev <= 1) {
+                    console.log('tiempo acabado')
+                    setPuntos(prev => prev - 10);
+                    setIncorrectas(prev => prev + 1);
                     generarPalabra();
-                    return settings.wordTime; // Reinicia al valor de ajustes
+                    return settings.wordTime;
                 } else {
                     return prev - 1;
                 }
             });
         }, 1000);
+        
         return () => clearInterval(timer);
     }, [settings.wordTime]); // Solo depende del ajuste, no del tiempo
 
@@ -98,8 +102,6 @@ export default function Play() {
                     setFinJuego(true);
                     return 0;
                 } else {
-                    setPuntos(puntos - 10)
-                    setIncorrectas(incorrectas + 1)
                     return prev - 1;
                 }
             });
